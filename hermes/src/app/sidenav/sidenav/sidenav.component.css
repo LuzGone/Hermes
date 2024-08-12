@@ -1,19 +1,19 @@
 .nav-item {
   color: initial;
-  transition: color 0.3s ease;
+  border-radius: 0 !important;
+  border-left: 5px solid transparent;
 }
 
-.nav-item:hover,
-.nav-item:hover mat-icon,
-.nav-item:hover span {
+.nav-item:hover {
+  border-color: #20B2AA;
   color: #20B2AA;
 }
 
-.nav-item:focus,
-.nav-item:active,
+.nav-item:hover mat-icon,
+.nav-item:hover span,
 .nav-item:focus mat-icon,
 .nav-item:focus span,
 .nav-item:active mat-icon,
 .nav-item:active span {
-  color: #20B2AA;
-}
+  border-radius: 0 !important;
+  color: #20B2AA; }

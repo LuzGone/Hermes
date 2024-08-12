@@ -3,6 +3,6 @@
      *ngFor="let item of menuItems()"
      class="nav-item">
     <mat-icon matListItemIcon>{{item.icon}}</mat-icon>
-    <span  matListItemTitle *ngIf="!sideNavCollapsed()">{{item.label}}</span>
+    <span matListItemTitle *ngIf="!sideNavCollapsed()">{{item.label}}</span>
   </a>
 </mat-nav-list>

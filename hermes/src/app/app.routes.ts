@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
 
 import { PedidosComponent } from './pedidos/pedidos/pedidos.component';
@@ -29,4 +30,8 @@ export const routes: Routes = [
 
 
 ];
-
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
