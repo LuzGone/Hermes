@@ -1,40 +1,7 @@
-- Criar um .env
+Criar um arquivo .env com os seguintes dados:
 RAILS_ENV=production
 POSTGRES_HOST=postgres
-POSTGRES_DB=hermes
-POSTGRES_USER=hermes
-POSTGRES_PASSWORD=hermes
-RAILS_MASTER_KEY= pasta config
-
-- alterar o database.yml
-default: &default
-  adapter: postgresql
-  encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: <%= ENV['POSTGRES_HOST'] %>
-  port: 5432
-  timeout: 5000
-
-development:
-  <<: *default
-  database: hermes_development
-  username: <%= ENV['POSTGRES_USER'] %>
-  password: <%= ENV['POSTGRES_PASSWORD'] %>
-
-test:
-  <<: *default
-  database: hermes_test
-  username: <%= ENV['POSTGRES_USER'] %>
-  password: <%= ENV['POSTGRES_PASSWORD'] %>
-
-production:
-  <<: *default
-  database: <%= ENV['POSTGRES_DB'] %>
-  username: <%= ENV['POSTGRES_USER'] %>
-  password: <%= ENV['POSTGRES_PASSWORD'] %>
-
--Alterar o docker-entrypoint na pasta bin
-if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
-  ./bin/rails db:create
-  ./bin/rails db:prepare
-fi
+POSTGRES_DB=<Voce escolhe>
+POSTGRES_USER=<Voce escolhe>
+POSTGRES_PASSWORD=<Voce escolhe>
+RAILS_MASTER_KEY=<Está presente na pasta config do management no arquivo chamado master.key>
