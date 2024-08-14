@@ -1,16 +1,34 @@
 services:
-  database:
+  postgres:
     image: postgres
-    volumes:
-      - ./Database/tmp/db:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: password
-  management:
-    build: ./Management
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
-    volumes:
-      - ./Management:/myapp
     ports:
-      - "3000:3000"
+      - '5432:5432'
+    volumes:
+      - hermes_pg_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=hermes
+      - POSTGRES_PASSWORD=hermes
+      - POSTGRES_DB=hermes
+    
+  management:
+    build: ./management
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails db:create db:migrate && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    environment:
+      - RAILS_ENV=${RAILS_ENV}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+    volumes:
+      - hermes_rails_management_storage:/rails/storage
     depends_on:
-      - database
+      - postgres
+    ports:
+      - '3000:3000'
+    
+  
+volumes:
+  hermes_pg_data:
+  hermes_rails_management_storage:
+  
